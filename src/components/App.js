@@ -40,7 +40,11 @@ function App() {
           setUserEmail(res.data.email);
           navigate("/", { replace: true });
         }
-      });
+      }).catch((err) => {
+        setIsInfoTooltipOpen(true);
+        setRegisterSuccess(false);
+        console.log(err);
+      })
     }
   }
 
@@ -55,7 +59,11 @@ function App() {
           setCurrentUser(userData);
           setCards(initialCards);
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+          setIsInfoTooltipOpen(true);
+          setRegisterSuccess(false);
+          console.log(err);
+        })
     }
   }, [loggedIn]);
 
@@ -108,7 +116,11 @@ function App() {
     .then((newCard) => {
       setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
     })
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      setIsInfoTooltipOpen(true);
+      setRegisterSuccess(false);
+      console.log(err);
+    })
   }
 
   function handleCardDelete(card) {
@@ -117,7 +129,11 @@ function App() {
       setCards((state) => state.filter((c) => c._id !== card._id));
       closeAllPopups();
     })
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      setIsInfoTooltipOpen(true);
+      setRegisterSuccess(false);
+      console.log(err);
+    })
   }
 
   function handleUpdateUser(data) {
@@ -126,7 +142,11 @@ function App() {
       setCurrentUser(data)
       closeAllPopups();
     })
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      setIsInfoTooltipOpen(true);
+      setRegisterSuccess(false);
+      console.log(err);
+    })
   }
 
   function handleUpdateAvatar(data) {
@@ -135,7 +155,11 @@ function App() {
       setCurrentUser(data)
       closeAllPopups();
     })
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      setIsInfoTooltipOpen(true);
+      setRegisterSuccess(false);
+      console.log(err);
+    })
   }
 
   function handleAddPlace(newCard) {
@@ -144,7 +168,11 @@ function App() {
       setCards([newCard, ...cards])
       closeAllPopups();
     })
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      setIsInfoTooltipOpen(true);
+      setRegisterSuccess(false);
+      console.log(err);
+    })
   }
   
   function handleLogin(email, password) {
@@ -155,7 +183,11 @@ function App() {
       setUserEmail(email);
       navigate('/');
     })
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      setIsInfoTooltipOpen(true);
+      setRegisterSuccess(false);
+      console.log(err);
+    })
   }
 
   function handleRegister(email, password) {
@@ -212,7 +244,7 @@ function App() {
           <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} onUpdateUser={handleUpdateUser} />
           <AddPlacePopup isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} onAddPlace={handleAddPlace} />
           <ImagePopup card={selectedCard} onClose={closeAllPopups}/>
-          <InfoTooltip isOpen={isInfoTooltipOpen} onClose={closeAllPopups} success={registerSuccess} />
+          <InfoTooltip isOpen={isInfoTooltipOpen} onClose={closeAllPopups} successMessage={'Вы успешно зарегистрировались!'} failMessage={'Что-то пошло не так! Попробуйте ещё раз.'} success={registerSuccess} />
 
         </div>
       </div>
