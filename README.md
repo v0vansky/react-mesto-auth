@@ -2,7 +2,7 @@
 
 Проектная работа курса "web-разработчик" в Яндекс.Практикум
 
-**Ссылка на проект: [Место (react + auth)](https://v0vansky.github.io/react-mesto-auth/index.html)**
+**Ссылка на проект: [Место (react + auth)](https://v0vansky.github.io/react-mesto-auth/)**
 
 ---
 
